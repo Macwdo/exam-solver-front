@@ -1,0 +1,23 @@
+{
+  "name": "Html Reader",
+  "description": "Html Reader",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content-script.ts"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
