@@ -44,11 +44,23 @@ const KeySelector = () => {
     }, [])
 
     const onKeyChange = async (examId: string) => {
-        const document = await service.getDocument()
-        await service.sendDocument(document, examId)
+        if (examId === "no-items") {
+            setExamAnswers([])
+            return
+        }
 
-        const result = await service.getExam(examId)
-        setExamAnswers(result)
+        const exam = await service.getExam(examId);
+        const shouldSendDocument = exam.status === "not_started" || exam.status === "failed"
+        if (shouldSendDocument) {
+            const document = await service.getDocument()
+            await service.sendDocument(document, examId)
+            setExamAnswers([])
+        }
+
+        if (exam.status === "processing") setExamAnswers([]);
+        if (exam.status === "completed" && exam.answer) {
+            setExamAnswers(exam.answer)
+        };
 
     }
 
@@ -73,17 +85,9 @@ const KeySelector = () => {
             <SelectTrigger className="bg-white">
                 <SelectValue placeholder="Select a key" />
             </SelectTrigger>
-
             <SelectContent>
-                {exams.length === 0 && <SelectItem value="no-keys">No keys found</SelectItem>}
-                {exams.map((key, index) => (
-                    <SelectItem
-                        key={index}
-                        value={key.id}
-                    >
-                        {key.name} {getStatusIcon(key.status)}
-                    </SelectItem>
-                ))}
+                {exams.length === 0 && <SelectItem value="no-items">No items found</SelectItem>}
+                {exams.map((exam, index) => <SelectItem key={index} value={exam.id}>{getStatusIcon(exam.status)} {exam.name}</SelectItem>)}
             </SelectContent>
         </Select>
     )

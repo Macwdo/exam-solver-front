@@ -1,4 +1,4 @@
-import type { ExamResponse, PresignedUrlResponse, PresignedUrlRequest } from "./types";
+import type { ExamResponse, PresignedUrlResponse, PresignedUrlRequest, Exam } from "./types";
 import type { ExamAnswer } from "@/components/app/questions/questions";
 
 
@@ -46,13 +46,10 @@ const service = {
       await fetch(presignedUrl.url, { method: "POST", body: formData});
   },
 
-  getExam: async (examId: string): Promise<ExamAnswer[]> => {
+  getExam: async (examId: string): Promise<Exam> => {
     const response = await fetch(`${API_URL}/exams/${examId}/`);
-    if (!response.ok) {
-      return []
-    }
-  
     const data = await response.json();
+
     return data
   },
 

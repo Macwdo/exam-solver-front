@@ -1,9 +1,12 @@
+import type { ExamAnswer } from "@/components/app/questions/questions";
+
 export type Status = "not_started" | "processing" | "completed" | "failed";
 
 export type Exam = {
   id: string;
   name: string;
   status: Status;
+  answer: ExamAnswer[] | null;
 };
 
 export type ExamResponse = Exam[];
