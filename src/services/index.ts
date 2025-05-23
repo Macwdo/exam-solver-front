@@ -2,7 +2,7 @@ import type { ExamResponse, PresignedUrlResponse, PresignedUrlRequest, Exam } fr
 import type { ExamAnswer } from "@/components/app/questions/questions";
 
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://exam-solver-api.up.railway.app";
 
 const service = {  
   getDocument: async (): Promise<string> => {
