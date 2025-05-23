@@ -1,11 +1,18 @@
 {
-  "name": "Html Reader",
-  "description": "Html Reader",
+  "name": "Exam Solver",
+  "description": "Solve exams with AI",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [],
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_title": "Exam Solver",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png",
+      "256": "icons/icon256.png"
+    }
   },
   "content_scripts": [
     {
