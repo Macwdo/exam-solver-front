@@ -8,28 +8,14 @@ export type Alternative = {
     text: string
 }
 
-export type Question = {
+export type ExamAnswer = {
     number: number,
     question: string,
     alternatives: Alternative[],
     answer: Alternative
 }
 
-const QuestionsTable = () => {
-    const { questions } = usePopup()
 
-
-    return (
-        <TableBody>
-            {questions.map((item, i) => (
-                <TableRow key={i}>
-                    <TableCell >{item.number}</TableCell>
-                    <TableCell>{item.answer.letter}</TableCell>
-                </TableRow>
-            ))}
-        </TableBody>
-    )
-}
 
 const Questions = () => {
     return (
@@ -42,6 +28,21 @@ const Questions = () => {
             </TableHeader>
             <QuestionsTable />
         </Table>
+    )
+}
+
+const QuestionsTable = () => {
+    const { examAnswers } = usePopup()
+
+    return (
+        <TableBody>
+            {examAnswers.map((item, i) => (
+                <TableRow key={i}>
+                    <TableCell >{item.number}</TableCell>
+                    <TableCell>{item.answer.letter}</TableCell>
+                </TableRow>
+            ))}
+        </TableBody>
     )
 }
 

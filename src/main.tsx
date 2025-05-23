@@ -6,7 +6,7 @@ import Popup from './popup'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App developerMode={true}>
+    <App developerMode={false}>
       <Popup />
     </App>
   </StrictMode>,

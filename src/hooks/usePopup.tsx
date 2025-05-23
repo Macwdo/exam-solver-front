@@ -1,18 +1,18 @@
+import type { ExamAnswer } from "@/components/app/questions/questions"
 import { createContext, useContext, useState } from "react"
-import type { Question } from "../components/app/questions/questions"
 
 type PopupContextProps = {
-    questions: Question[],
-    setQuestions: (questions: Question[]) => void
+    examAnswers: ExamAnswer[],
+    setExamAnswers: (examAnswers: ExamAnswer[]) => void
 }
 
-const PopupContext = createContext<PopupContextProps>({ questions: [], setQuestions: () => { } })
+const PopupContext = createContext<PopupContextProps>({ examAnswers: [], setExamAnswers: () => { } })
 
 const PopupProvider = ({ children }: { children: React.ReactNode }) => {
-    const [questions, setQuestions] = useState<Question[]>([])
+    const [examAnswers, setExamAnswers] = useState<ExamAnswer[]>([])
 
     return (
-        <PopupContext.Provider value={{ questions, setQuestions }}>
+        <PopupContext.Provider value={{ examAnswers, setExamAnswers }}>
             {children}
         </PopupContext.Provider>
     )
