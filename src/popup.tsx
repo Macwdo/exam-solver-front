@@ -52,8 +52,7 @@ const KeySelector = () => {
         const exam = await service.getExam(examId);
         const shouldSendDocument = exam.status === "not_started" || exam.status === "failed"
         if (shouldSendDocument) {
-            // const document = await service.getDocument()
-            const document = "test"
+            const document = await service.getDocument()
             await service.sendDocument(document, examId)
             setExamAnswers([])
         }
